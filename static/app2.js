@@ -1,4 +1,4 @@
-const contractAddress = "0xc265a1d1a8b0f0f176ca9b367ac5f71a14a1d09c"; // Replace with actual contract address
+const contractAddress = "0x2f217b8524b37f583daf49af36642d46e5b6f0cd"; // Replace with actual contract address
 let web3;
 let diceContract;
 
