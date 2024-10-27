@@ -1,0 +1,187 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "gameId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "winner",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "roll1",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "roll2",
+				"type": "uint256"
+			}
+		],
+		"name": "GameCompleted",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "gameId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "player1",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "stake1",
+				"type": "uint256"
+			}
+		],
+		"name": "GameCreated",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "joinOrCreateGame",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "gameId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "address",
+				"name": "player2",
+				"type": "address"
+			}
+		],
+		"name": "PlayerMatched",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "FEE_PERCENTAGE",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "gameIdCounter",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "games",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "player1",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "player2",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "stake1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "stake2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "minStake",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum DiceRollGame.GameState",
+				"name": "state",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint256",
+				"name": "roll1",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "roll2",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "winner",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "openGameId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

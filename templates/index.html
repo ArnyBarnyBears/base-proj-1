@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roll Game</title>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.5.3/dist/web3.min.js"></script>
+    <script src="../static/app2.js" defer></script> <!-- Link to JS -->
+</head>
+<body>
+    <h1>Dice Roll Game</h1>
+    
+    <!-- Game Actions -->
+    <p id="status">Welcome! Enter a stake and click "Join Game" to start.</p>
+    <input type="number" id="stakeInput" placeholder="Enter stake in wei" />
+    <button onclick="joinOrCreateGame()">Join Game</button>
+    <p id="result"></p>
+
+    <!-- Contract Data Fetch -->
+    <h2>Contract Information</h2>
+    <button onclick="getFeePercentage()">Get Fee Percentage</button>
+    <p id="feePercentage">Fee Percentage: </p>
+
+    <button onclick="getGameIdCounter()">Get Game ID Counter</button>
+    <p id="gameIdCounter">Game ID Counter: </p>
+
+    <button onclick="getOpenGameId()">Get Open Game ID</button>
+    <p id="openGameId">Open Game ID: </p>
+
+    <h3>Fetch Game Details by Game ID</h3>
+    <input type="number" id="gameIdInput" placeholder="Enter Game ID" />
+    <button onclick="getGameDetails()">Get Game Details</button>
+    <pre id="gameDetails">Game Details: </pre>
+</body>
+</html>
