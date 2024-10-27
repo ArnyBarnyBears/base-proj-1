@@ -116,7 +116,7 @@ async function checkGameCompletion(gameId) {
         console.log("Game details fetched:", gameDetails);
 
         // Check if game state is 2 (Completed)
-        if (gameDetails.State === "2") {
+        if (gameDetails.state === "2") {
             alert("Something is complete")
             document.getElementById('status').innerText = "Game completed!";
             document.getElementById('result').innerHTML = `
@@ -129,7 +129,7 @@ async function checkGameCompletion(gameId) {
             return true;
         } else {
             document.getElementById('status').innerText = "Game is not completed yet. Waiting for completion...";
-            console.log("Game is still in progress. Current state:", gameDetails.State);
+            console.log("Game is still in progress. Current state:", gameDetails.state);
             return false;
         }
     } catch (error) {
