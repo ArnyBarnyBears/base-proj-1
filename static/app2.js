@@ -55,10 +55,15 @@ async function joinOrCreateGame() {
         console.log("Transaction sent:", tx);
 
         console.log(tx)
-        const gameId = tx.events.GameCompleted.returnValues.gameId;
-        console.log("Game created with ID:", gameId);
+        const gameId = tx.events?.GameCreated?.returnValues?.gameId;
+        if (gameId !== undefined) {
+            let intervalId = setInterval(function() {
+                if (checkGameCompletion(gameId)) {
+                    clearInterval(intervalId); // Stops the interval when checkGameCompletion returns True
+                }
+            }, 5000);
+        }
 
-        checkGameCompletion(gameId);
 
         document.getElementById('status').innerText = "Waiting for a match...";
     } catch (error) {
@@ -112,6 +117,7 @@ async function checkGameCompletion(gameId) {
 
         // Check if game state is 2 (Completed)
         if (gameDetails.State === "2") {
+            alert("Something is complete")
             document.getElementById('status').innerText = "Game completed!";
             document.getElementById('result').innerHTML = `
                 Game ID: ${gameId}<br>
@@ -120,9 +126,11 @@ async function checkGameCompletion(gameId) {
                 Winner: ${gameDetails.winner}
             `;
             console.log("Game is completed with state 2. Displaying results.");
+            return true;
         } else {
             document.getElementById('status').innerText = "Game is not completed yet. Waiting for completion...";
             console.log("Game is still in progress. Current state:", gameDetails.State);
+            return false;
         }
     } catch (error) {
         console.error("Error retrieving game details:", error);

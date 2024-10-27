@@ -14,7 +14,7 @@
     <p id="status">Welcome! Enter a stake and click "Join Game" to start.</p>
     <input type="number" id="stakeInput" placeholder="Enter stake in wei" />
     <button onclick="joinOrCreateGame()">Join Game</button>
-    <p id="result"></p>
+    <p id="result">Game result will be displayed here after completion.</p>
 
     <!-- Contract Data Fetch -->
     <h2>Contract Information</h2>
@@ -31,5 +31,44 @@
     <input type="number" id="gameIdInput" placeholder="Enter Game ID" />
     <button onclick="getGameDetails()">Get Game Details</button>
     <pre id="gameDetails">Game Details: </pre>
+
+    <script>
+        async function checkGameCompletion(gameId) {
+            try {
+                console.log("Fetching game details for game ID:", gameId);
+                
+                // Fetch game details
+                const gameDetails = await diceContract.methods.games(gameId).call();
+                console.log("Game details fetched:", gameDetails);
+
+                // Check if game state is 2 (Completed)
+                if (gameDetails.State === "2") {
+                    alert("Game completed");
+                    document.getElementById('status').innerText = "Game completed!";
+                    document.getElementById('result').innerHTML = `
+                        <strong>Game ID:</strong> ${gameId}<br>
+                        <strong>Player 1 Roll:</strong> ${gameDetails.roll1}<br>
+                        <strong>Player 2 Roll:</strong> ${gameDetails.roll2}<br>
+                        <strong>Winner:</strong> ${gameDetails.winner}
+                    `;
+                    console.log("Game is completed with state 2. Displaying results.");
+                } else {
+                    document.getElementById('status').innerText = "Game is not completed yet. Waiting for completion...";
+                    console.log("Game is still in progress. Current state:", gameDetails.State);
+                }
+            } catch (error) {
+                console.error("Error retrieving game details:", error);
+            }
+        }
+
+        function getGameDetails() {
+            const gameId = document.getElementById("gameIdInput").value;
+            if (gameId) {
+                checkGameCompletion(gameId);
+            } else {
+                alert("Please enter a valid Game ID.");
+            }
+        }
+    </script>
 </body>
 </html>
